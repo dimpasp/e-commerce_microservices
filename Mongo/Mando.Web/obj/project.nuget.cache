@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "yjUIYEGnC2SasxpeIn89psYmOY3zIM6/OaJviDDfU1fdp8IY5DUeZsR9gfB3CLC814wg2Cbr8Ht4aIb9JLsCqA==",
+  "success": true,
+  "projectFilePath": "C:\\newp\\Mongo\\Mando.Web\\Mando.Web.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\dpaspalas\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

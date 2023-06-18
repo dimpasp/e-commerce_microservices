@@ -7,7 +7,8 @@ using System.Security.Cryptography.Xml;
 
 namespace Mango.Services.CouponAPI.Controllers
 {
-    [Route("api/[controller]")]
+    //[Route("api/[controller]")]
+    [Route("api/coupon")]
     [ApiController]
     public class CouponApiController : ControllerBase
     {
@@ -119,6 +120,8 @@ namespace Mango.Services.CouponAPI.Controllers
         }
 
         [HttpDelete]
+        [Route("{id:int}")]
+        //we want to pass a parameter so we have not forget to add route
         public ResponseDto Delete(int id)
         {
             try

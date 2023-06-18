@@ -1,4 +1,4 @@
-using Mando.Web.Models;
+using Mango.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 

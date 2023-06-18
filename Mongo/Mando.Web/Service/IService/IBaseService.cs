@@ -1,7 +1,7 @@
-﻿using Mando.Web.Models;
+﻿using Mango.Web.Models;
 using Mango.Web.Models;
 
-namespace Mando.Web.Service.IService
+namespace Mango.Web.Service.IService
 {
     public interface IBaseService
     {

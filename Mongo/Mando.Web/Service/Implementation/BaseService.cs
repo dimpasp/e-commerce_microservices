@@ -1,13 +1,13 @@
-﻿using Mando.Web.Models;
-using Mando.Web.Service.IService;
+﻿using Mango.Web.Models;
+using Mango.Web.Service.IService;
 using Mango.Web.Models;
 using Newtonsoft.Json;
 using System.Net;
 using System.Text;
 using System.Text.Json.Serialization;
-using static Mando.Web.Utility.SD;
+using static Mango.Web.Utility.SD;
 
-namespace Mando.Web.Service.Implementation
+namespace Mango.Web.Service.Implementation
 {
     public class BaseService : IBaseService
     {

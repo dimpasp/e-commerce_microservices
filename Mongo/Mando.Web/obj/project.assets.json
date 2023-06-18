@@ -61,9 +61,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\newp\\Mongo\\Mando.Web\\Mando.Web.csproj",
-      "projectName": "Mando.Web",
-      "projectPath": "C:\\newp\\Mongo\\Mando.Web\\Mando.Web.csproj",
+      "projectUniqueName": "C:\\newp\\Mongo\\Mando.Web\\Mango.Web.csproj",
+      "projectName": "Mango.Web",
+      "projectPath": "C:\\newp\\Mongo\\Mando.Web\\Mango.Web.csproj",
       "packagesPath": "C:\\Users\\dpaspalas\\.nuget\\packages\\",
       "outputPath": "C:\\newp\\Mongo\\Mando.Web\\obj\\",
       "projectStyle": "PackageReference",

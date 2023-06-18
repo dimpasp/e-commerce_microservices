@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{E5
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mango.Services.CouponAPI", "Mango.Services.CouponAPI\Mango.Services.CouponAPI.csproj", "{2ADF14EE-E267-4942-AB56-ABB24DF02956}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mando.Web", "Mando.Web\Mando.Web.csproj", "{5938815D-022F-4998-81C0-A64FA31761BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mango.Web", "Mando.Web\Mango.Web.csproj", "{5938815D-022F-4998-81C0-A64FA31761BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

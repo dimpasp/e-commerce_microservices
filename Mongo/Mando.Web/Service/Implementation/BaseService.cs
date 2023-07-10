@@ -13,12 +13,15 @@ namespace Mango.Web.Service.Implementation
     {
         //todo comment to this
         private readonly IHttpClientFactory _httpClientFactory;
-        public BaseService(IHttpClientFactory httpClientFactory)
+        private readonly ITokenProvider _tokenProvider;
+        public BaseService(IHttpClientFactory httpClientFactory, ITokenProvider tokenProvider)
         {
             _httpClientFactory = httpClientFactory;
+            _tokenProvider = tokenProvider;
+
         }
         //todo make it simple 
-        public async Task<ResponseDto?> SendAsync(RequestDto requestDto)
+        public async Task<ResponseDto?> SendAsync(RequestDto requestDto, bool withBearer = true)
         {
             //todo comment on this
             HttpClient httpClient = _httpClientFactory.CreateClient("MangoAPI");
@@ -28,6 +31,11 @@ namespace Mango.Web.Service.Implementation
             httpRequestMessage.Headers.Add("Accept", "application/json");
 
             //token
+            if(withBearer)
+            {
+                var token = _tokenProvider.GetToken();
+                httpRequestMessage.Headers.Add("Authorization",$"Bearer {token}");
+            }
 
             httpRequestMessage.RequestUri = new Uri(requestDto.Url);
             if (requestDto.Data != null)

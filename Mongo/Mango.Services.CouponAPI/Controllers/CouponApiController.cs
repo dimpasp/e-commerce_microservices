@@ -2,6 +2,7 @@
 using Mango.Services.CouponAPI.Data;
 using Mango.Services.CouponAPI.Models;
 using Mango.Services.CouponAPI.Models.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Cryptography.Xml;
 
@@ -10,9 +11,9 @@ namespace Mango.Services.CouponAPI.Controllers
     //[Route("api/[controller]")]
     [Route("api/coupon")]
     [ApiController]
+    [Authorize]
     public class CouponApiController : ControllerBase
     {
-        //dependency injection
         private readonly AppDbContext _appDbContext;
         private readonly ResponseDto _responseDto;
         private IMapper _mapper;
@@ -81,6 +82,7 @@ namespace Mango.Services.CouponAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles ="ADMIN")]
         public ResponseDto Post([FromBody]CouponDto couponDto)
         {
             try
@@ -100,6 +102,7 @@ namespace Mango.Services.CouponAPI.Controllers
             return _responseDto;
         }
         [HttpPut]
+        [Authorize(Roles = "ADMIN")]
         public ResponseDto Put([FromBody] CouponDto couponDto)
         {
             try
@@ -121,6 +124,7 @@ namespace Mango.Services.CouponAPI.Controllers
 
         [HttpDelete]
         [Route("{id:int}")]
+        [Authorize(Roles = "ADMIN")]
         //we want to pass a parameter so we have not forget to add route
         public ResponseDto Delete(int id)
         {

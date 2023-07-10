@@ -39,6 +39,27 @@
                             </ul>
                         </li>
                     </ul>
+                    <ul class="navbar-nav">
+                      @*  this buttons shows only if user in not log in yet*@
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Auth" asp-action="Login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link"  asp-controller="Auth" asp-action="Register">Register</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" >Hello,@User.Identity.Name</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Auth" asp-action="LogOut">LogOut</a>
+                            </li>
+                        }
+                    </ul>
                 </div>
             </div>
         </nav>

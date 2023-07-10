@@ -63,6 +63,8 @@ namespace Mango.Services.AuthApi.Service.Implementation
                 };
             }
             //if user was found generate token
+           var roles=await _userManager.GetRolesAsync(user);
+            var token = _jwtTokenGenerator.GenerateToken(user,roles);
 
             //first get user obj
             UserDto userLogin = new()
@@ -72,9 +74,6 @@ namespace Mango.Services.AuthApi.Service.Implementation
                 ID = user.Id,
                 PhoneNumber = user.PhoneNumber
             };
-
-            //get token
-            var token= _jwtTokenGenerator.GenerateToken(user);
 
             LoginResponseDto loginResponseDto = new()
             {

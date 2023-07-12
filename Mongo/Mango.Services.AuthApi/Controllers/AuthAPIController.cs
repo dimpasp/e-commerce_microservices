@@ -54,7 +54,9 @@ namespace Mango.Services.AuthApi.Controllers
                 _responseDto.Result = false;
                 _responseDto.Message = "Error encountered";
                 return BadRequest(_responseDto);
-            }
+            } 
+            //todo is this wrong?
+            
             return Ok(_responseDto);
         }
     }

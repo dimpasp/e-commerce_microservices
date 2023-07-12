@@ -25,7 +25,8 @@ namespace Mango.Services.AuthApi.Service.Implementation
         {
             var tokenHandler = new JwtSecurityTokenHandler();
 
-            var key = Encoding.ASCII.GetBytes(_jwtOptions.Secret);
+            //var key = Encoding.ASCII.GetBytes(_jwtOptions.Secret);
+            var key = Encoding.UTF8.GetBytes(_jwtOptions.Secret);
 
             var claimList = new List<Claim>
             {
@@ -43,16 +44,17 @@ namespace Mango.Services.AuthApi.Service.Implementation
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 //this is the basic credits for jwt token
-                Audience=_jwtOptions.Audience,
-                Issuer=_jwtOptions.Issuer,
-                Subject=new ClaimsIdentity(claimList),
-                Expires=DateTime.UtcNow.AddDays(7),
-                SigningCredentials=new SigningCredentials(
+                Audience = _jwtOptions.Audience,
+                Issuer = _jwtOptions.Issuer,
+                Subject = new ClaimsIdentity(claimList),
+                Expires = DateTime.UtcNow.AddDays(7),
+                SigningCredentials = new SigningCredentials(
                     new SymmetricSecurityKey(key),
                     SecurityAlgorithms.HmacSha256Signature)
-                
+
             };
-            var token=tokenHandler.CreateToken(tokenDescriptor);
+
+            var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
         }
 

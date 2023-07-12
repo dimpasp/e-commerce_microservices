@@ -43,7 +43,9 @@ namespace Mango.Services.AuthApi.Controllers
                 _responseDto.Message = "User or Password is not correct";
                 return BadRequest(_responseDto);
             }
-            return Ok(_responseDto);
+            //todo
+            _responseDto.Result = loginResponse;
+           return Ok(_responseDto);
         }
         [HttpPost("assignRole")]
         public async Task<IActionResult> AssignRole([FromBody] RegisterationRequestDto registerationRequestDto)

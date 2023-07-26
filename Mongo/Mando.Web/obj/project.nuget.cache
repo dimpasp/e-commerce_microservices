@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "OjwQYNnFmQlO24YZ0NkcVmZhmkpZM8MMfI96hOutYcOpH9HDLxD0VaOmMYk9b6qg4PRJRlCgi0+1I3HYr5enGQ==",
+  "dgSpecHash": "1e9Gu+GffyqHAewzFNPMOAQM4AghNA2iPWWMOtTGcE/nmYxMjRhs8wWrfalINifFaDXs35d4EUBV0KGx4jjC4g==",
   "success": true,
   "projectFilePath": "C:\\newp\\Mongo\\Mando.Web\\Mango.Web.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\dpaspalas\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\dpaspalas\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\dpaspalas\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
+    "C:\\Users\\dpaspalas\\.nuget\\packages\\identitymodel\\6.1.0\\identitymodel.6.1.0.nupkg.sha512",
     "C:\\Users\\dpaspalas\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.0-preview.5.23302.2\\microsoft.aspnetcore.authentication.jwtbearer.8.0.0-preview.5.23302.2.nupkg.sha512",
     "C:\\Users\\dpaspalas\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\8.0.0-preview.5.23302.2\\microsoft.aspnetcore.cryptography.internal.8.0.0-preview.5.23302.2.nupkg.sha512",
     "C:\\Users\\dpaspalas\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\8.0.0-preview.5.23302.2\\microsoft.aspnetcore.cryptography.keyderivation.8.0.0-preview.5.23302.2.nupkg.sha512",

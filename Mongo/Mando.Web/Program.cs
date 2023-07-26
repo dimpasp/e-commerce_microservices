@@ -17,12 +17,14 @@ builder.Services.AddHttpClient();
 builder.Services.AddHttpClient<ICouponService,CouponService>();
 builder.Services.AddHttpClient<IAuthService, AuthService>();
 builder.Services.AddHttpClient<IProductService, ProductService>();
+builder.Services.AddHttpClient<ICardService, CardService>(); 
 
 
 //set api url when the services are being configured
 SD.CouponAPIBase = builder.Configuration["ServiceUrls:CouponAPI"];
 SD.AuthAPIBase = builder.Configuration["ServiceUrls:AuthAPI"];
 SD.ProductAPIBase = builder.Configuration["ServiceUrls:ProductAPI"];
+SD.ShoppingCardAPIBase = builder.Configuration["ServiceUrls:ShoppingCardAPI"];
 
 //dependency injection of interfaces
 //todo comment why scoped
@@ -31,6 +33,7 @@ builder.Services.AddScoped<ICouponService, CouponService>();
 builder.Services.AddScoped<IBaseService, BaseService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICardService, CardService>();
 
 //
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

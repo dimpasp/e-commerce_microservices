@@ -1,3 +1,4 @@
+using IdentityModel;
 using Mango.Web.Models;
 using Mango.Web.Service.IService;
 using Mango.Web.Utility;
@@ -11,9 +12,11 @@ namespace Mando.Web.Controllers
     public class HomeController : Controller
     {
         private readonly IProductService _ProductService;
-        public HomeController(IProductService ProductService)
+        private readonly ICardService _cardService;
+        public HomeController(IProductService ProductService, ICardService cardService)
         {
             _ProductService = ProductService;
+            _cardService = cardService;
         }
 
         public async Task<IActionResult>  Index()
@@ -50,7 +53,40 @@ namespace Mando.Web.Controllers
             return View(productDto);
         }
 
+        [Authorize]
+        [HttpPost]
+        [ActionName("ProductDetails")]
+        public async Task<IActionResult> ProductDetails(ProductDto productDto)
+        {
+            CartDto cartDto = new CartDto()
+            {
+                CartHeader =new CartHeaderDto
+                {
+                    UserId=User.Claims.Where(u=>u.Type==JwtClaimTypes.Subject)?.FirstOrDefault()?.Value
+                }
+            };
+            CartDetailsDto cartDetails = new CartDetailsDto()
+            {
+                Count=productDto.Count,
+                ProductId=productDto.ProductId
+            };
 
+            List<CartDetailsDto> cartDetailsDtos = new() { cartDetails};
+            cartDto.CartDetails = cartDetailsDtos;
+
+            ResponseDto? responseDto = await _cardService.UpsertCardAsync(cartDto);
+
+            if (responseDto != null && responseDto.IsSuccess == true)
+            {
+                TempData["success"] = "Item has been added to Shopping Card";
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                TempData["error"] = responseDto?.Message;
+            }
+            return View(productDto);
+        }
         [Authorize(Roles =SD.RoleAdmin)]
         public IActionResult Privacy()
         {

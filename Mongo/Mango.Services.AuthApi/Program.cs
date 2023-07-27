@@ -1,3 +1,4 @@
+using Mango.MessageBus;
 using Mango.Services.AuthApi.Data;
 using Mango.Services.AuthApi.Models;
 using Mango.Services.AuthApi.Service.Implementation;
@@ -30,6 +31,9 @@ builder.Services.AddControllers();
 //todo comment why scoped
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+
+//add project reference for MessageBus
+builder.Services.AddScoped<IMessageBus, MessageBus>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

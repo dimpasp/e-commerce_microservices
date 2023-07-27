@@ -18,8 +18,17 @@ namespace Mango.Web.Service.Implementation
             {
                 ApiType = SD.ApiType.POST,
                 Data = cartDto,
-                // Url = SD.CouponAPIBase + "/api/cart/ApplyCoupon"
                 Url = SD.ShoppingCardAPIBase + "/api/cart/ApplyCoupon"
+            });
+        }
+
+        public async Task<ResponseDto?> EmailCart(CartDto cartDto)
+        {
+            return await _baseService.SendAsync(new RequestDto
+            {
+                ApiType = SD.ApiType.POST,
+                Data = cartDto,
+                Url = SD.ShoppingCardAPIBase + "/api/cart/EmailCartRequest"
             });
         }
 

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Mango.MessageBus;
 using Mango.Services.OrderAPI.Data;
 using Mango.Services.OrderAPI.Models;
 using Mango.Services.OrderAPI.Models.DTO;
@@ -18,14 +19,17 @@ namespace Mango.Services.OrderAPI.Controllers
         private readonly ResponseDto _responseDto;
         private IProductService _productService;
         private IMapper _mapper;
+        private readonly IMessageBus _messageBus;
+        private readonly IConfiguration _configuration;
 
-        public OrderAPIController(AppDbContext appDbContext, IMapper mapper, IProductService productService)
+        public OrderAPIController(AppDbContext appDbContext, IMapper mapper, IProductService productService, IConfiguration configuration, IMessageBus messageBus)
         {
             _appDbContext = appDbContext;
             _productService = productService;
             _responseDto = new ResponseDto();
             _mapper = mapper;
-
+            _configuration = configuration;
+            _messageBus = messageBus;
         }
         //  [Authorize]
         [HttpPost("CreateOrder")]
@@ -149,6 +153,17 @@ namespace Mango.Services.OrderAPI.Controllers
                     orderHeader.Status = SD.Status_Approved;
                     _appDbContext.SaveChanges();
 
+                    RewardsDto rewardsDto = new()
+                    {
+                        OrderId=orderHeader.OrderHeaderId,
+                        RewardsActivity=Convert.ToInt32(orderHeader.OrderTotal),
+                        UserId=orderHeader.UserId
+                    };
+
+                    string topicName = _configuration.GetValue<string>("TopicAndQueueNames:OrderCreatedTopic");
+                    
+                    await _messageBus.PublishMessage(rewardsDto, topicName);
+                    
                     _responseDto.Result=_mapper.Map<OrderHeaderDto>(orderHeader);
 
                 }

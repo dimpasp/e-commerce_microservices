@@ -5,6 +5,7 @@ using System.Text;
 namespace Mango.MessageBus
 {
     //todo add comments
+    //todo connectionString not here but in config file
     public class MessageBus : IMessageBus
     {
         private string connectionString = "your connection string, and i have to place it to appsettings";

@@ -25,11 +25,7 @@
         /// <summary>
         /// 
         /// </summary>
-        public string? FirstName { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public string? LastName { get; set; }
+        public string? Name { get; set; }
         /// <summary>
         /// 
         /// </summary>

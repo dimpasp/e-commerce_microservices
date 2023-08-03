@@ -1,5 +1,6 @@
 ﻿using Mango.Web.Models;
 using Mango.Web.Service.IService;
+using Mango.Web.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -10,16 +11,87 @@ namespace Mango.Web.Controllers
     public class CardController : Controller
     {
         private readonly ICardService _cardService;
+        private readonly IOrderService _orderService;
         
-        public CardController(ICardService cardService)
+        public CardController(ICardService cardService, IOrderService orderService)
         {
             _cardService = cardService;
+            _orderService = orderService;
         }
 
         [Authorize]
         public async Task<IActionResult> CartIndex()
         {
             return View(await LoadCartBasedOnLoggedInUser());
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Checkout()
+        {
+            return View(await LoadCartBasedOnLoggedInUser());
+        }
+
+
+        [HttpPost]
+        [ActionName("Checkout")]
+        public async Task<IActionResult> Checkout(CartDto cartDto)
+        {
+            CartDto cart= await LoadCartBasedOnLoggedInUser();
+            cart.CartHeader.Phone = cartDto.CartHeader.Phone;
+            cart.CartHeader.Email = cartDto.CartHeader.Email;
+            cart.CartHeader.Name = cartDto.CartHeader.Name;
+
+            var response=await _orderService.CreateOrder(cart);
+
+            OrderHeaderDto orderHeaderDto = 
+                JsonConvert.DeserializeObject<OrderHeaderDto>(Convert.ToString(response.Result));
+
+            if (response != null && response.IsSuccess)
+            {
+                // get stripe session and redirect to stripe to place holder
+                // Request.Scheme =>https
+                // Request.Host.Value => localhost and port numberfor this senario
+                var domain = Request.Scheme + "://" + Request.Host.Value + "/";
+                StripeRequestDto stripeRequestDto = new()
+                {
+                    ApproveUrl = domain + "cart/Confirmation?orderId=" + orderHeaderDto.OrderHeaderId,
+                    CancelUrl = domain + "cart/Checkout",
+                    OrderHeader = orderHeaderDto
+
+                };
+
+                //todo check that
+                var stripeResponse= await _orderService.CreateStripeSession(stripeRequestDto);
+
+               StripeRequestDto stripe = 
+                    JsonConvert.DeserializeObject<StripeRequestDto>(Convert.ToString(stripeResponse.Result));
+
+                //we want stripe session url to redirect our app to this url (it is stripe checkout page)
+                Response.Headers.Add("Location", stripe.StripeSessionUrl);
+                return new StatusCodeResult(303);
+            }
+
+
+            return View();
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Confirmation(int orderId)
+        {
+            var response = await _orderService.ValidateStripeSession(orderId);
+
+            if (response != null & response.IsSuccess)
+            {
+                OrderHeaderDto orderHeader = 
+                    JsonConvert.DeserializeObject<OrderHeaderDto>(Convert.ToString(response.Result));
+                if (orderHeader.Status == SD.Status_Approved)
+                {
+                    return View(orderId);
+                }
+                
+            }
+            //redirect to some error page based on status
+            return View();
         }
 
         public async Task<IActionResult> Remove(int cartDetailsId)

@@ -17,8 +17,6 @@ namespace Mango.Web.Service.Implementation
             {
                 ApiType = SD.ApiType.POST,
                 Data=ProductDto,
-                //todo after finish the course make it into appsettings,
-                //bad techniqe to write 
                 Url = SD.ProductAPIBase + "/api/Product/"
             });
         }
@@ -28,8 +26,6 @@ namespace Mango.Web.Service.Implementation
             return await _baseService.SendAsync(new RequestDto
             {
                 ApiType = SD.ApiType.DELETE,
-                //todo after finish the course make it into appsettings,
-                //bad techniqe to write 
                 Url = SD.ProductAPIBase + "/api/Product/" + id
             });
         }
@@ -39,8 +35,6 @@ namespace Mango.Web.Service.Implementation
             return await _baseService.SendAsync(new RequestDto
             {
                 ApiType=SD.ApiType.GET,
-                //todo after finish the course make it into appsettings,
-                //bad techniqe to write 
                 Url=SD.ProductAPIBase+"/api/Product"
             });
         }
@@ -50,8 +44,6 @@ namespace Mango.Web.Service.Implementation
             return await _baseService.SendAsync(new RequestDto
             {
                 ApiType = SD.ApiType.GET,
-                //todo after finish the course make it into appsettings,
-                //bad techniqe to write 
                 Url = SD.ProductAPIBase + "/api/Product/GetByCode/"+ProductCode
             });
         }
@@ -60,9 +52,7 @@ namespace Mango.Web.Service.Implementation
         {
             return await _baseService.SendAsync(new RequestDto
             {
-                ApiType = SD.ApiType.GET,
-                //todo after finish the course make it into appsettings,
-                //bad techniqe to write 
+                ApiType = SD.ApiType.GET, 
                 Url = SD.ProductAPIBase + "/api/Product/" + id
             });
         }
@@ -73,8 +63,6 @@ namespace Mango.Web.Service.Implementation
             {
                 ApiType = SD.ApiType.PUT,
                 Data = ProductDto,
-                //todo after finish the course make it into appsettings,
-                //bad techniqe to write 
                 Url = SD.ProductAPIBase + "/api/Product/"
             });
         }

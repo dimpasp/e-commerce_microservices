@@ -4,14 +4,15 @@ using Mango.Services.CouponAPI.Models;
 using Mango.Services.CouponAPI.Models.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Cryptography.Xml;
+using Microsoft.Extensions.Options;
+
 
 namespace Mango.Services.CouponAPI.Controllers
 {
     //[Route("api/[controller]")]
     [Route("api/coupon")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class CouponApiController : ControllerBase
     {
         private readonly AppDbContext _appDbContext;
@@ -82,7 +83,7 @@ namespace Mango.Services.CouponAPI.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles ="ADMIN")]
+      //  [Authorize(Roles ="ADMIN")]
         public ResponseDto Post([FromBody]CouponDto couponDto)
         {
             try
@@ -91,7 +92,21 @@ namespace Mango.Services.CouponAPI.Controllers
                 
                 _appDbContext.Coupons.Add(coupon);
                 _appDbContext.SaveChanges();
-                 
+
+                //create coupon to stripe
+
+                var options = new Stripe.CouponCreateOptions
+                {
+                    AmountOff = (long)(couponDto.DiscountAmount * 100),
+                    Name=couponDto.CouponCode,
+                    Currency="usd",
+                    Id=couponDto.CouponCode,
+                    //Duration = "repeating",
+                    //DurationInMonths = 3,
+                };
+                var service = new Stripe.CouponService();
+                service.Create(options);
+
                 _responseDto.Result = _mapper.Map<CouponDto>(coupon);
             }
             catch (Exception ex)
@@ -124,7 +139,7 @@ namespace Mango.Services.CouponAPI.Controllers
 
         [HttpDelete]
         [Route("{id:int}")]
-        [Authorize(Roles = "ADMIN")]
+      //  [Authorize(Roles = "ADMIN")]
         //we want to pass a parameter so we have not forget to add route
         public ResponseDto Delete(int id)
         {
@@ -134,6 +149,10 @@ namespace Mango.Services.CouponAPI.Controllers
 
                 _appDbContext.Coupons.Remove(coupon);
                 _appDbContext.SaveChanges();
+
+                //delete coupon from stripe
+                var service = new Stripe.CouponService();
+                service.Delete(coupon.CouponCode);
             }
             catch (Exception ex)
             {

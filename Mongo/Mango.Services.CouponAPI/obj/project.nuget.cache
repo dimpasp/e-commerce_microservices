@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "s5sZuYwNEL5LP0OmDjEQ/Y+xl8BGbBlfmHcO8j8sS7Z6Tm6ecWrHJkFIT2L6k297OPgwo15gNQxwYMxSTFFsJg==",
+  "dgSpecHash": "iG2vRJ0xsotc20atGlh0q8KCyU70yZPI2XRXAYC6T5ptGtdYubhEEnipAgNvC+XLcaf8TnSwLfbIwzOIJ1e82g==",
   "success": true,
   "projectFilePath": "C:\\newp\\Mongo\\Mango.Services.CouponAPI\\Mango.Services.CouponAPI.csproj",
   "expectedPackageFiles": [
@@ -47,6 +47,8 @@
     "C:\\Users\\dpaspalas\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
     "C:\\Users\\dpaspalas\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\dpaspalas\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\dpaspalas\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\dpaspalas\\.nuget\\packages\\stripe.net\\41.13.0\\stripe.net.41.13.0.nupkg.sha512",
     "C:\\Users\\dpaspalas\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
     "C:\\Users\\dpaspalas\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
     "C:\\Users\\dpaspalas\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",

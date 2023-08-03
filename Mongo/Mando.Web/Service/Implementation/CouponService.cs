@@ -17,8 +17,6 @@ namespace Mango.Web.Service.Implementation
             {
                 ApiType = SD.ApiType.POST,
                 Data=couponDto,
-                //todo after finish the course make it into appsettings,
-                //bad techniqe to write 
                 Url = SD.CouponAPIBase + "/api/coupon/"
             });
         }
@@ -27,9 +25,7 @@ namespace Mango.Web.Service.Implementation
         {
             return await _baseService.SendAsync(new RequestDto
             {
-                ApiType = SD.ApiType.DELETE,
-                //todo after finish the course make it into appsettings,
-                //bad techniqe to write 
+                ApiType = SD.ApiType.DELETE, 
                 Url = SD.CouponAPIBase + "/api/coupon/" + id
             });
         }
@@ -39,8 +35,6 @@ namespace Mango.Web.Service.Implementation
             return await _baseService.SendAsync(new RequestDto
             {
                 ApiType=SD.ApiType.GET,
-                //todo after finish the course make it into appsettings,
-                //bad techniqe to write 
                 Url=SD.CouponAPIBase+"/api/coupon"
             });
         }
@@ -50,8 +44,6 @@ namespace Mango.Web.Service.Implementation
             return await _baseService.SendAsync(new RequestDto
             {
                 ApiType = SD.ApiType.GET,
-                //todo after finish the course make it into appsettings,
-                //bad techniqe to write 
                 Url = SD.CouponAPIBase + "/api/coupon/GetByCode/"+couponCode
             });
         }
@@ -60,9 +52,7 @@ namespace Mango.Web.Service.Implementation
         {
             return await _baseService.SendAsync(new RequestDto
             {
-                ApiType = SD.ApiType.GET,
-                //todo after finish the course make it into appsettings,
-                //bad techniqe to write 
+                ApiType = SD.ApiType.GET, 
                 Url = SD.CouponAPIBase + "/api/coupon/" + id
             });
         }
@@ -73,8 +63,6 @@ namespace Mango.Web.Service.Implementation
             {
                 ApiType = SD.ApiType.PUT,
                 Data = couponDto,
-                //todo after finish the course make it into appsettings,
-                //bad techniqe to write 
                 Url = SD.CouponAPIBase + "/api/coupon/"
             });
         }
